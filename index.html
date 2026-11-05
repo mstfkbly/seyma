@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#46264b">
+  <meta name="description" content="Şeyma için arkadaşlığa özel, çiçekli ve animasyonlu akrostiş sürprizi.">
+  <title>Şeyma'ya Dostluk Sürprizi 🌷</title>
+  <style>
+    :root { --cream:#fff9f5;--ink:#3c2940;--muted:#775d76;--violet:#633e73;--rose:#cc5588;--outline:rgba(255,255,255,.60); }
+    * { box-sizing:border-box; }
+    html { min-height:100%; }
+    body {
+      min-height:100dvh;margin:0;padding:30px 16px 55px;display:flex;align-items:center;justify-content:center;
+      font-family:ui-rounded,"Trebuchet MS",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);
+      background:radial-gradient(circle at 20% 20%,#fbd4e2 0,transparent 34%),radial-gradient(circle at 84% 12%,#e1d1ff 0,transparent 42%),radial-gradient(circle at 74% 90%,#ffdabb 0,transparent 37%),linear-gradient(145deg,#fff8fb,#f2e8f9 58%,#fff3e5);overflow-x:hidden;
+    }
+    .orb {position:fixed;border-radius:50%;filter:blur(2px);pointer-events:none;opacity:.5;animation:breath 8s ease-in-out infinite alternate;z-index:0}
+    .orb.one{width:270px;height:270px;left:-100px;bottom:-110px;background:#ffe2c8}
+    .orb.two{width:220px;height:220px;right:-120px;top:5%;background:#e2d0ff;animation-delay:-3s}
+    @keyframes breath {to{transform:scale(1.25) translateY(-14px);opacity:.75}}
+    .petal {position:fixed;top:110vh;left:var(--x);font-size:var(--s);pointer-events:none;z-index:1;opacity:0;animation:floatUp var(--t) linear infinite;animation-delay:var(--d);filter:drop-shadow(0 4px 6px rgba(87,35,60,.12));}
+    @keyframes floatUp {0% {transform:translateY(0) rotate(-18deg) scale(.8);opacity:0}12%{opacity:.78}83%{opacity:.70}100%{transform:translateY(-130vh) translateX(var(--drift)) rotate(32deg) scale(1.07);opacity:0}}
+    .card {position:relative;z-index:2;width:min(100%,610px);padding:35px clamp(20px,6vw,45px) 34px;border:1px solid var(--outline);border-radius:32px;background:rgba(255,255,255,.75);box-shadow:0 23px 80px rgba(84,42,101,.15),inset 0 1px 0 #fff;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);text-align:center;}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid #ead7e6;border-radius:60px;padding:9px 15px;color:#85576f;background:#fff8fb;font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+    .flower{font-size:46px;line-height:1.2;margin-top:12px;filter:drop-shadow(0 7px 9px rgba(170,84,110,.13));animation:sway 4s ease-in-out infinite alternate}
+    @keyframes sway {to{transform:rotate(8deg) translateY(-3px)}}
+    h1{font-family:Georgia,"Times New Roman",serif;color:#54305f;line-height:1.1;font-size:clamp(45px,11vw,73px);font-weight:700;letter-spacing:-.055em;margin:12px 0 4px}
+    .accent{width:90px;height:3px;background:linear-gradient(90deg,transparent,#c66b9a,transparent);margin:16px auto 13px}
+    .subtitle{color:var(--muted);font-size:15px;line-height:1.75;margin:0 0 22px}
+    .poem{display:grid;gap:10px;text-align:left;min-height:0;}
+    .verse {display:flex;align-items:flex-start;gap:13px;min-height:73px;padding:12px 13px;border:1px solid rgba(188,130,171,.18);border-radius:17px;background:rgba(255,250,252,.88);box-shadow:0 4px 18px rgba(138,65,115,.045);opacity:0;transform:translateY(15px) scale(.98);visibility:hidden;transition:opacity .6s ease,transform .6s ease,visibility .6s}
+    .verse.visible{opacity:1;transform:translateY(0) scale(1);visibility:visible}
+    .letter{flex:none;display:grid;place-items:center;width:43px;height:43px;border-radius:13px;background:linear-gradient(145deg,#f9e2ee,#eddefb);border:1px solid #ebc8e4;color:#8c3f76;font-size:26px;font-family:Georgia,serif;font-weight:700;box-shadow:inset 0 1px #fff}
+    .line{align-self:center;font-size:15px;line-height:1.58;font-weight:550;color:#503d52}
+    .actions{margin-top:24px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+    button{font:inherit;cursor:pointer;touch-action:manipulation}
+    .main-btn{min-width:195px;min-height:52px;padding:13px 24px;border:0;border-radius:50px;color:#fff;background:linear-gradient(110deg,#b74988,#7851a1);box-shadow:0 11px 25px rgba(150,75,139,.26);font-size:15px;font-weight:800;letter-spacing:.02em;transition:transform .22s,box-shadow .22s}
+    .main-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 14px 27px rgba(150,75,139,.33)}
+    .main-btn:active:not(:disabled){transform:translateY(1px)}
+    .main-btn:disabled{opacity:.75;cursor:default}
+    .result{margin-top:20px;max-height:0;overflow:hidden;opacity:0;transform:translateY(10px);transition:max-height .8s ease,opacity .8s ease,transform .8s ease}
+    .result.visible{max-height:200px;opacity:1;transform:translateY(0)}
+    .result-inner{padding:19px 14px;background:linear-gradient(130deg,#fff1f7,#f5eefd);border:1px solid #f1d7ec;border-radius:20px}
+    .result-title{margin:0 0 6px;font-family:Georgia,serif;font-size:clamp(20px,6vw,27px);color:#91446f;font-weight:bold}
+    .result-text{font-size:14px;color:#7d5975;line-height:1.65;margin:0}
+    footer{margin-top:19px;font-size:12px;color:#a0809a;letter-spacing:.035em}
+    .burst{position:fixed;top:48%;left:50%;z-index:10;pointer-events:none;font-size:23px;animation:burst 1.55s ease-out both}
+    @keyframes burst {0%{opacity:0;transform:translate(-50%,-50%) scale(.35)}14%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--bx)),calc(-50% + var(--by))) rotate(var(--rot)) scale(1.15)}}
+    @media(max-width:460px){body{padding:16px 12px 28px}.card{padding:26px 16px 23px;border-radius:25px}.flower{font-size:37px}.subtitle{margin-bottom:17px}.verse{min-height:66px;padding:10px;gap:11px}.letter{width:39px;height:42px;font-size:24px}.line{font-size:14px}footer{font-size:11px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.petal{display:none}.verse{transform:none}.result{transform:none}}
+  </style>
+</head>
+<body>
+  <div class="orb one" aria-hidden="true"></div><div class="orb two" aria-hidden="true"></div>
+  <div class="petal" aria-hidden="true" style="--x:7%;--s:24px;--t:13s;--d:-1s;--drift:34px">🌷</div>
+  <div class="petal" aria-hidden="true" style="--x:16%;--s:19px;--t:16s;--d:-8s;--drift:60px">💗</div>
+  <div class="petal" aria-hidden="true" style="--x:29%;--s:21px;--t:14s;--d:-11s;--drift:-33px">🌸</div>
+  <div class="petal" aria-hidden="true" style="--x:43%;--s:17px;--t:18s;--d:-5s;--drift:62px">✨</div>
+  <div class="petal" aria-hidden="true" style="--x:58%;--s:24px;--t:15s;--d:-10s;--drift:-51px">🌼</div>
+  <div class="petal" aria-hidden="true" style="--x:72%;--s:18px;--t:13s;--d:-4s;--drift:37px">🤍</div>
+  <div class="petal" aria-hidden="true" style="--x:84%;--s:22px;--t:17s;--d:-13s;--drift:-32px">🌺</div>
+  <div class="petal" aria-hidden="true" style="--x:94%;--s:19px;--t:15s;--d:-7s;--drift:-58px">💐</div>
+
+  <main class="card">
+    <div class="eyebrow">✨ GÜZEL BİR ARKADAŞA ÖZEL ✨</div>
+    <div class="flower" aria-hidden="true">💐</div>
+    <h1>Şeyma</h1>
+    <div class="accent" aria-hidden="true"></div>
+    <p class="subtitle">Bazı insanlar hayatımıza sessizce girer,<br>ama gülümsemeleriyle her şeyi güzelleştirir. 🌸</p>
+    <div class="poem" id="poem" aria-live="polite" aria-label="Şeyma için akrostiş şiir">
+      <div class="verse"><span class="letter">Ş</span><span class="line">Şu kalabalık dünyada güzel bir iz bıraktın,</span></div>
+      <div class="verse"><span class="letter">E</span><span class="line">En sıradan günlere bile neşe kattın.</span></div>
+      <div class="verse"><span class="letter">Y</span><span class="line">Yüzündeki gülümseme hiç eksilmesin,</span></div>
+      <div class="verse"><span class="letter">M</span><span class="line">Mutluluk her adımında sana eşlik etsin,</span></div>
+      <div class="verse"><span class="letter">A</span><span class="line">Arkadaşlığımız yıllar geçse de hep böyle içten kalsın.</span></div>
+    </div>
+    <div class="result" id="result" aria-live="polite">
+      <div class="result-inner"><p class="result-title">İyi ki arkadaşız, Şeyma! 💖</p><p class="result-text">Gülüşün hiç solmasın, yolun hep güzelliklerle dolsun.<br>Güzel dostluklar hep sürsün. 🌷✨</p></div>
+    </div>
+    <div class="actions"><button id="openBtn" class="main-btn" type="button">💌 Sürprizi Aç</button></div>
+    <footer>🌸 Dostluğa küçük, içten bir armağan 🌸</footer>
+  </main>
+  <script>
+    (function(){
+      'use strict';
+      const button=document.getElementById('openBtn');
+      const lines=Array.from(document.querySelectorAll('.verse'));
+      const result=document.getElementById('result');
+      const motionOK=!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let running=false;
+      let session=0;
+      const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+      function sprinkle(amount){
+        if(!motionOK)return;
+        const icons=['🌸','💗','✨','🌷','💐','🤍','🌼'];
+        for(let j=0;j<amount;j++){
+          const e=document.createElement('span');e.className='burst';e.textContent=icons[j%icons.length];
+          const a=(Math.PI*2*j/amount)+(.15*j);const r=75+Math.random()*160;
+          e.style.setProperty('--bx',Math.cos(a)*r+'px');e.style.setProperty('--by',Math.sin(a)*r+'px');
+          e.style.setProperty('--rot',(Math.random()*200-100)+'deg');
+          e.style.animationDelay=(j%4)*90+'ms';document.body.appendChild(e);
+          setTimeout(()=>e.remove(),2400);
+        }
+      }
+      async function start(){
+        if(running)return;
+        running=true;const id=++session;
+        lines.forEach(line=>line.classList.remove('visible'));
+        result.classList.remove('visible');
+        button.disabled=true;button.textContent='🌸 Sürpriz Açılıyor...';
+        sprinkle(13);
+        await sleep(motionOK?320:0);
+        for(const line of lines){
+          if(id!==session)return;
+          line.classList.add('visible');
+          await sleep(motionOK?1180:90);
+        }
+        result.classList.add('visible');sprinkle(23);
+        button.textContent='🔁 Bir Daha İzle';button.disabled=false;running=false;
+      }
+      button.addEventListener('click',start);
+    })();
+  </script>
+</body>
+</html>
